@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Cache test fixture
+        id: fixture-cache
+        uses: actions/cache@v4
+        with:
+          path: test/fixture.mp4
+          key: test-fixture-bigbuck-v1
+
+      - name: Download test video
+        if: steps.fixture-cache.outputs.cache-hit != 'true'
+        run: |
+          curl -L -o test/fixture.mp4 \
+            "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" \
+          || ffmpeg -f lavfi -i "testsrc=duration=2:size=320x240:rate=24" \
+               -c:v libx264 -pix_fmt yuv420p test/fixture.mp4
+
+      - run: npm test

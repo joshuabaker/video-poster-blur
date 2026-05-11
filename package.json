@@ -1,10 +1,13 @@
 {
-  "name": "video-poster-blur",
+  "name": "@joshuabaker/video-poster-blur",
   "version": "1.0.0",
   "description": "Generate a Base64 data URI blur placeholder from a video for use as a poster attribute",
   "type": "module",
   "bin": {
     "video-poster-blur": "./cli/index.mjs"
+  },
+  "scripts": {
+    "test": "node test/test.mjs"
   },
   "files": [
     "cli/"
@@ -15,5 +18,8 @@
   "engines": {
     "node": ">=18.3.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.31.0"
+  }
 }

@@ -15,20 +15,19 @@ Generate a tiny Base64 data URI image from a video's first frame. When used as a
 ## Prerequisites
 
 - `ffmpeg` must be installed (`brew install ffmpeg`)
-- `video-poster-blur` CLI must be installed globally (`npm install -g video-poster-blur`)
 
 ## Usage
 
 Run the CLI and capture the output:
 
 ```bash
-video-poster-blur path/to/video.mp4
+npx @joshuabaker/video-poster-blur path/to/video.mp4
 ```
 
 With a custom width (default is 10px):
 
 ```bash
-video-poster-blur path/to/video.mp4 --width 20
+npx @joshuabaker/video-poster-blur path/to/video.mp4 --width 20
 ```
 
 The command prints a `data:image/png;base64,...` string to stdout.
