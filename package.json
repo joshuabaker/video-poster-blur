@@ -1,0 +1,19 @@
+{
+  "name": "video-poster-blur",
+  "version": "1.0.0",
+  "description": "Generate a Base64 data URI blur placeholder from a video for use as a poster attribute",
+  "type": "module",
+  "bin": {
+    "video-poster-blur": "./cli/index.mjs"
+  },
+  "files": [
+    "cli/"
+  ],
+  "dependencies": {
+    "sharp": "^0.33.0"
+  },
+  "engines": {
+    "node": ">=18.3.0"
+  },
+  "license": "MIT"
+}
