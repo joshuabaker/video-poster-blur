@@ -12,7 +12,7 @@ Blur placeholder images from video files, built on ffmpeg and sharp.
 [Node.js](https://nodejs.org/) (v18.3+) and [ffmpeg](https://ffmpeg.org/) must be installed:
 
 ```bash
-brew install node ffmpeg
+brew install ffmpeg
 ```
 
 ## Usage
