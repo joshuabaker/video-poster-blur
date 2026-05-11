@@ -42,6 +42,10 @@ npx @joshuabaker/video-poster-blur video.mp4 --width 20
 </video>
 ```
 
-## Claude Code Skill
+## Agent Skill
 
-A Claude Code skill is included at `skill/video-poster-blur/SKILL.md` for agent integration. Install the skill so that Claude Code automatically generates blur posters when inserting `<video>` elements.
+Install the skill so Claude Code automatically generates blur posters when inserting `<video>` elements:
+
+```bash
+npx skills add joshuabaker/video-poster-blur
+```
