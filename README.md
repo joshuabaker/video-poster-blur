@@ -1,8 +1,11 @@
-# video-poster-blur
+# Video Poster Blur
 
-Generate a Base64 data URI blur placeholder from a video for use as a `poster` attribute on `<video>` elements.
+Blur placeholder images from video files, built on ffmpeg and sharp.
 
-The tool extracts the first frame of a video, resizes it to a tiny image (default 10px wide), and outputs a Base64 data URI. When the browser scales this tiny image up to fill the video element, it produces a natural blur-up placeholder effect.
+🎬 Extracts the first frame from any video format
+🔬 Resizes to a tiny image that naturally blurs when scaled up
+📦 Outputs a Base64 data URI — drop straight into `<video poster="...">`
+🤖 Includes a Claude Code skill for agent integration
 
 ## Prerequisites
 
