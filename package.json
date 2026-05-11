@@ -4,7 +4,7 @@
   "description": "Generate a Base64 data URI blur placeholder from a video for use as a poster attribute",
   "type": "module",
   "bin": {
-    "video-poster-blur": "./cli/index.mjs"
+    "video-poster-blur": "cli/index.mjs"
   },
   "scripts": {
     "test": "node test/test.mjs"
