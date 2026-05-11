@@ -30,7 +30,7 @@ jobs:
           git add .changeset/
           git diff --staged --quiet || (git commit -m "Add changeset" && git push)
 
-      - uses: dependabot/fetch-metadata@v2
+      - uses: dependabot/fetch-metadata@v3
         id: metadata
 
       - name: Approve and auto-merge
