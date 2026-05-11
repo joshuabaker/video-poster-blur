@@ -2,9 +2,12 @@
 
 Blur placeholder images from video files, built on ffmpeg and sharp.
 
-🎬 Extracts the first frame from any video format
-🔬 Resizes to a tiny image that naturally blurs when scaled up
-📦 Outputs a Base64 data URI — drop straight into `<video poster="...">`
+🎬 Grabs the first frame from any video format
+
+🔬 Shrinks it down to a tiny image that blurs naturally when scaled up
+
+📦 Outputs a ready-to-use data URI for `<video poster="...">`
+
 🤖 Includes a Claude Code skill for agent integration
 
 ## Prerequisites
