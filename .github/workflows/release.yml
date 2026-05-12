@@ -11,6 +11,7 @@ concurrency:
 permissions:
   contents: write
   id-token: write
+  pull-requests: write
 
 jobs:
   release:
@@ -26,26 +27,47 @@ jobs:
 
       - run: npm ci
 
-      - name: Version and publish
+      - name: Check for changesets
+        id: changesets
         run: |
           npx changeset version
-
           if git diff --quiet; then
-            echo "No changesets to release"
-            exit 0
+            echo "has_changesets=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changesets=true" >> "$GITHUB_OUTPUT"
+            echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Publish to npm
+        if: steps.changesets.outputs.has_changesets == 'true'
+        run: npm publish --provenance --access public
+
+      - name: Create release PR
+        if: steps.changesets.outputs.has_changesets == 'true'
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="release/v$VERSION"
+          git checkout -b "$BRANCH"
           git add -A
-          git commit -m "Version packages"
+          git commit -m "v$VERSION"
+          git push -u origin "$BRANCH"
 
-          VERSION=$(node -p "require('./package.json').version")
-          git tag "v$VERSION"
-          git push --follow-tags
+          gh pr create \
+            --title "v$VERSION" \
+            --body "Published to npm. Merging updates package.json version and CHANGELOG." \
+            --head "$BRANCH" \
+            --base main
 
-          npm publish --provenance --access public
-
-          gh release create "v$VERSION" --generate-notes
+          gh pr merge --auto --squash "$BRANCH"
         env:
+          VERSION: ${{ steps.changesets.outputs.version }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub release
+        if: steps.changesets.outputs.has_changesets == 'true'
+        run: gh release create "v$VERSION" --generate-notes --target main
+        env:
+          VERSION: ${{ steps.changesets.outputs.version }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
