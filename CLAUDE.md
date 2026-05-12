@@ -25,3 +25,8 @@ node cli/index.mjs <video-path>
 - ESM (`"type": "module"`, `.mjs` extensions)
 - No build step
 - stdout is reserved for the data URI output; all other messages go to stderr
+
+## Workflow
+
+- Branch protection is enabled on `main` — all changes go through PRs
+- After creating a PR, enable auto-merge with `gh pr merge --auto --squash <number>` when asked to merge or when the change is obviously intended to be merged immediately
