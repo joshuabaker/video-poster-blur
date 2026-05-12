@@ -7,6 +7,8 @@ Blur placeholder images from video files, built on ffmpeg and sharp.
 - 📦 Outputs a ready-to-use data URI for `<video poster="...">`
 - 🤖 Includes a Claude Code skill for agent integration
 
+![Preview](preview.png)
+
 ## Prerequisites
 
 [Node.js](https://nodejs.org/) (v18.3+) and [ffmpeg](https://ffmpeg.org/) must be installed:
