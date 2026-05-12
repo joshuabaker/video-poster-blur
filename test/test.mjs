@@ -25,8 +25,8 @@ async function hasFixture() {
 const fixture = await hasFixture();
 
 if (fixture) {
-  const { code, stdout } = await run(FIXTURE);
-  assert.equal(code, 0, "should exit 0");
+  const { code, stdout, stderr } = await run(FIXTURE);
+  assert.equal(code, 0, `should exit 0: ${stderr}`);
   assert.match(stdout, /^data:image\/png;base64,/, "should output a PNG data URI");
   console.error("PASS: default width");
 
