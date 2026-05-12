@@ -18,6 +18,10 @@
   "engines": {
     "node": ">=18.3.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshuabaker/video-poster-blur.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "@changesets/cli": "^2.31.0"
